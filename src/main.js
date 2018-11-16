@@ -43,9 +43,8 @@ Vue.prototype.$toast = function(msg, cb) {
     })
 }
 
-new Vue({ render: h => h(App) }).$mount('#app')
-//process.env.NODE_ENV === 'development' ? 
-//    new Vue({ render: h => h(App) }).$mount('#app') : WechatPlugin.$wechat.miniProgram.getEnv(res => {
-//        if (res.miniprogram)
-//            new Vue({ render: h => h(App) }).$mount('#app')
-//    })
+process.env.NODE_ENV === 'development' ? 
+    new Vue({ render: h => h(App) }).$mount('#app') : WechatPlugin.$wechat.miniProgram.getEnv(res => {
+        if (res.miniprogram)
+            new Vue({ render: h => h(App) }).$mount('#app')
+    })
