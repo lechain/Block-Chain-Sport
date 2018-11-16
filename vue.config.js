@@ -1,7 +1,7 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-    baseUrl: process.env.NODE_ENV === 'production' ? '/sports/' : '/',
+    baseUrl: process.env.NODE_ENV === 'production' ? '/dist/' : '/',
     lintOnSave: process.env.NODE_ENV !== 'production',
     productionSourceMap: false,
     devServer: {
