@@ -227,10 +227,10 @@ export default {
         },
 
         tapItem: throttle(function(itemIndex, tabIndex) {
-            //if(Math.ceil(new Date().getTime() / 1000) + this.deadline >= this.list[itemIndex].match_time) {
-            //    this.$toast('竞猜已截止!')
-            //    return
-            //}
+            if(Math.ceil(new Date().getTime() / 1000) + this.deadline >= this.list[itemIndex].match_time) {
+                this.$toast('竞猜已截止!')
+                return
+            }
 
             this.itemIndex = itemIndex
             this.tabIndex = tabIndex
