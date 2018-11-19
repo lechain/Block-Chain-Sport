@@ -4,7 +4,7 @@
         <div class="match-csl">
             <div class="csl-item" v-for="(item, index) in list" :key=item.match_id>
                 <div class="csl-header">
-                    <p style="width:45vw;">本场已投注 {{item.total_oc | ocFormat}}</p>
+                    <p style="width:45vw;">本场已投注 <span style="color: #c38b36">{{item.total_oc | ocFormat}}</span></p>
                     <div class="bet">
                         <p>主胜:{{item.win_oc | ocFormat}}</p>
                         <p v-if="pressNum == 3">平:{{item.draw_oc | ocFormat}}</p>
@@ -163,7 +163,7 @@ export default {
     watch: {
         isActive: function(val) {
             if (val && this.list.length == 0 && !this.isLoading) {
-                this.pressTabs = this.pressNum == 3 ? ["主胜", "平", "客胜"] : ["主胜", "客胜"]
+                this.pressTabs = this.pressNum == 3 ? info.BTN_3 : info.BTN_2
 
                 this.$nextTick(() => {
                     this.$refs.scroller.pulldown._changeStatus("loading")
@@ -195,23 +195,20 @@ export default {
                 .then(({data}) => {
                     cb(data)
                 })
-                .catch(err => cb('', err)) 
+                .catch(err => {
+                    console.log(err)
+                    this.$toast(info.ERR_NETWORK, () => {
+                        this.$refs.scroller.donePulldown()
+                        this.isLoading = false
+                    })
+                }) 
         },
 
         refresh: function() {
             if (this.isLoading) return
             this.isLoading = true
 
-            this.getList((data, err) => {
-                if(err) {
-                    console.log(err)
-                    this.$toast(info.ERR_NETWORK, () => {
-                        this.$refs.scroller.donePulldown()
-                        this.isLoading = false
-                    })
-
-                    return
-                }
+            this.getList(data => {
 
                 setTimeout(() => {
                     this.list = data
@@ -301,14 +298,15 @@ export default {
 }
 
 .csl-item {
-    width: 95vw;
+    width: 96vw;
     height: 26vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid #dbdbdb;
-    border-radius: 5px;
+    border-bottom: 1px solid #eee;
+    /*border-radius: 5px; */
     margin-bottom: 2vh;
+    padding-bottom: 1.5vh;
     background-color: white;
 }
 
@@ -327,7 +325,7 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 5px 5px 0 5px;
+    margin: 5px 5px 0 10px;
     color: #999;
     font-size: 1.2rem;
 }

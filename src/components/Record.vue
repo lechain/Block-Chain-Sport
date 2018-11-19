@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <p>{{item.bet | betTeam(item)}} {{item.stake}} 个 OC <span :class="[item.trans_state == 0 ? notplay : (item.trans_state == 1 ? playing : played)]">{{info.TRANS_STATE[item.trans_state]}}</span></p>
+                    <p>{{item.bet | betTeam(item)}} {{item.stake}} OC <span :class="[item.trans_state == 0 ? notplay : (item.trans_state == 1 ? playing : played)]">{{info.TRANS_STATE[item.trans_state]}}</span></p>
                     <p>{{item.bet_time | dateFormat}} 参与的竞猜</p>
                 </div>
             </div>
@@ -244,15 +244,16 @@ export default {
 }
 
 .record {
-    width: 95vw;
+    width: 96vw;
     height: 23vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: 1px solid #dbdbdb;
+    border-bottom: 1px solid #eee;
     border-radius: 5px;
     background-color: white;
-    margin-bottom: 2.5vh;
+    margin-bottom: 2vh;
+    padding-bottom: 2vh;
 }
 
 .record:first-child {
@@ -300,7 +301,7 @@ export default {
 }
 
 .playing {
-    color: grey !important;
+    color: green !important;
 }
 
 .played {
