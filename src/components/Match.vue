@@ -168,9 +168,8 @@ export default {
                 this.$nextTick(() => {
                     this.$refs.scroller.pulldown._changeStatus("loading")
                     this.$refs.scroller.reset({top: -44}, 500)
+                    this.refresh()
                 })
-
-                this.refresh()
             }
         }
     },
@@ -209,16 +208,17 @@ export default {
             this.isLoading = true
 
             this.getList(data => {
+                console.log(data)
 
                 setTimeout(() => {
                     this.list = data
-
+                    
                     this.$nextTick(() => {
+                        this.$refs.scroller.donePulldown()
                         this.$refs.scroller.reset({top: 0}, 500)
+                        this.isLoading = false
                     })
 
-                    this.$refs.scroller.donePulldown()
-                    this.isLoading = false
                 }, this.loadTipsInterval)
             })
         },

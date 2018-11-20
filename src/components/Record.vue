@@ -95,9 +95,8 @@ export default {
                 this.$nextTick(() => {
                     this.$refs.scroller.pulldown._changeStatus("loading")
                     this.$refs.scroller.reset({top: -44}, 500)
+                    this.refresh()
                 })
-
-                this.refresh()
             }
         }
     },
@@ -174,13 +173,12 @@ export default {
                         this.nobet = true
                     }
 
-                    this.$refs.scroller.donePulldown()
-
                     if(this.total > this.pageSize) {
+                        this.$refs.scroller.donePulldown()
                         this.$refs.scroller.enablePullup()
+                        this.isLoading = false
                     }
 
-                    this.isLoading = false
                 }, this.loadTipsInterval)
             })
         },
