@@ -310,6 +310,10 @@ export default {
     background-color: white;
 }
 
+.csl-item:last-child {
+    border-bottom: 0;
+}
+
 .csl-item:first-child {
     margin-top: 1.3vh;
 }
