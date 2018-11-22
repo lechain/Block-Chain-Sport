@@ -51,6 +51,7 @@ export default {
     },
 
     BET_EMPTY: '您还未参与竞猜!',
+    BET_FINISHED: '竞猜已截止',
 
     ERR_NETWORK: '网络错误,稍后再试!',
     ERR_INNER: '系统内部错误'

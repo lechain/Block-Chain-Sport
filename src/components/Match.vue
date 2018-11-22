@@ -20,7 +20,8 @@
                         <p class="round">第{{item.round}}轮</p>
                         <p v-if="item.match_state == 0">VS</p> 
                         <p v-else>{{item.home_score}} : {{item.guest_score}}</p>
-                        <p class="time">{{item.match_time|dateFormat}}</p>
+                        <p class="finish" v-if="Math.ceil(new Date().getTime() / 1000) + 600 >= item.match_time">{{info.BET_FINISHED}}</p>
+                        <p class="time" v-else>{{item.match_time|dateFormat}}</p>
                     </div>
                     <div class="team">
                         <img :src="item.guest_club_logo" class="logo" />
@@ -225,7 +226,7 @@ export default {
 
         tapItem: throttle(function(itemIndex, tabIndex) {
             if(Math.ceil(new Date().getTime() / 1000) + this.deadline >= this.list[itemIndex].match_time) {
-                this.$toast('竞猜已截止!')
+                this.$toast(info.BET_FINISHED)
                 return
             }
 
@@ -376,11 +377,11 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: 1.5vh 0;
 }
 
 .csl-btn {
     width: 90vw;
+    margin: 1.5vh 0;
 }
 
 .mask {
@@ -502,6 +503,11 @@ export default {
     color: #3b4959;
     text-align: left;
     margin-bottom: 10px;
+}
+
+.finish {
+    color: #c38b36;
+    font-size: 1.4rem;
 }
 
 </style>
