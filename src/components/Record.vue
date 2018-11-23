@@ -146,7 +146,6 @@ export default {
             if (this.isLoading) return
             this.page = 1
             this.nomore = false
-            this.nobet = false
             this.isLoading = true
 
             this.getRecords((data, err) => {
@@ -169,15 +168,14 @@ export default {
                         this.$refs.scroller.reset({top: 0}, 500)
                     })
 
-                    if (data.matches.length == 0) {
-                        this.nobet = true
-                    }
+                    this.nobet = (data.matches.length == 0) ? true : false
 
                     if(this.total > this.pageSize) {
                         this.$refs.scroller.donePulldown()
                         this.$refs.scroller.enablePullup()
-                        this.isLoading = false
                     }
+
+                    this.isLoading = false
 
                 }, this.loadTipsInterval)
             })
