@@ -163,13 +163,13 @@ export default {
 
                 setTimeout(() => {
                     this.total = data.count
-                    if (data.matches.length != 0) {
-                        this.records = data.matches
+                    this.records = data.matches
 
-                        this.$nextTick(() => {
-                            this.$refs.scroller.reset({top: 0}, 500)
-                        })
-                    } else {
+                    this.$nextTick(() => {
+                        this.$refs.scroller.reset({top: 0}, 500)
+                    })
+
+                    if (data.matches.length == 0) {
                         this.nobet = true
                     }
 
