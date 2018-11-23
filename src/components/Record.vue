@@ -122,7 +122,7 @@ export default {
 
     methods: {
         getRecords: function(cb) {
-            this.$http.get('/matchinfo/mine', {
+            this.$http.get('/sports/matchinfo/mine', {
                 params: {
                     addr: this.$user.addr,
                     page: this.page - 1,

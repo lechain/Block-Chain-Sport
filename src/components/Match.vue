@@ -191,7 +191,7 @@ export default {
 
     methods: {
         getList: function(cb) {
-            this.$http.get('/matchinfo/' + this.type)
+            this.$http.get('/sports/matchinfo/' + this.type)
                 .then(({data}) => {
                     cb(data)
                 })
@@ -267,7 +267,7 @@ export default {
                     break;
             }
 
-            this.$http.post('/bet', {
+            this.$http.post('/sports/bet', {
                 address: this.$user.addr,
                 match_id: team.match_id,
                 bet: tabIndex,
