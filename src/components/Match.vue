@@ -246,6 +246,11 @@ export default {
 
             this.win_logo = tabIndex == 0 ? this.list[itemIndex].home_club_logo : this.list[itemIndex].guest_club_logo
             this.win_name = tabIndex == 0 ? this.list[itemIndex].home_club_name : this.list[itemIndex].guest_club_name
+
+            // 客胜 bet = 2
+            if(tabIndex == 1 && this.pressNum == 2) {
+                this.tabIndex = 2
+            }
         }, 800, { 'trailing': false }),
 
         tapRule: function() {
