@@ -277,6 +277,7 @@ export default {
                 match_id: team.match_id,
                 bet: tabIndex,
                 stake: num,
+                mobile: this.$user.mobile,
                 match_type: this.type
             }).then(res => {
                 setTimeout(() => {
