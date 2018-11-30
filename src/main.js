@@ -29,7 +29,7 @@ Vue.use(ConfigPlugin, {
 Vue.config.productionTip = false
 Vue.prototype.$http.defaults.baseURL = process.env.VUE_APP_URL
 Vue.prototype.$http.defaults.timeout = process.env.VUE_HTTP_TIMEOUT
-Vue.prototype.$http.defaults.headers.common['Cache-Control'] = 'max-age=0'
+Vue.prototype.$http.defaults.headers = {'Cache-Control': 'max-age=0, no-store' }
 Vue.prototype.$user = querystring.parse(window.location.search.substring(1))
 
 Vue.prototype.$toast = function(msg, cb) {
