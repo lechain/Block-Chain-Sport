@@ -136,7 +136,7 @@ export default {
 
         tapItem: throttle(function(index) {
             console.log(this.records[index])
-            if (this.records[index].match_state == 0) return
+            if (this.records[index].trans_state == 0) return
 
             this.$wechat.miniProgram.navigateTo({
                 url: '/pages/detail/detail?tokenid=1&source=sports&transid=' + this.records[index].trans_id
