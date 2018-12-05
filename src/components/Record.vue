@@ -8,9 +8,9 @@
                     <div class="match">
                         <p class="time">{{item.match_time|dateFormat}}</p>
                         <p class="matchType">{{item.match_type | matchType}}</p>
-                        <p class="matchState" :class="[item.match_state == 0 ? playing : played]">| {{item.match_state | matchState}}</p>
+                        <p class="matchState" :class="[item.payed == 0 ? playing : played]">| {{item.payed | matchState}}</p>
                     </div>
-                    <p class="income" :class="[item.income == 0 ? lose : win]" v-if="item.match_state == 1">{{item.income == 0 ? '未猜中' : '+' + item.income + ' OC'}} </p>
+                    <p class="income" :class="[item.income == 0 ? lose : win]" v-if="item.payed == 1">{{item.income == 0 ? '未猜中' : '+' + item.income + ' OC'}} </p>
                 </div>
                 <div class="content">
                     <div class="team home">
