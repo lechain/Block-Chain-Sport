@@ -333,7 +333,7 @@ export default {
 }
 
 .vs {
-    width: 15vw;
+    width: 20vw;
     height: 50px;
     display: flex;
     flex-direction: column;
