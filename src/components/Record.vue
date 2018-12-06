@@ -10,7 +10,7 @@
                         <p class="matchType">{{item.match_type | matchType}}</p>
                         <p class="matchState" :class="[item.payed == 0 ? playing : played]">| {{item.payed | matchState}}</p>
                     </div>
-                    <p class="income" @click="tapWin(index)" :class="[item.income == 0 ? lose : win]" v-if="item.payed == 1">{{item.income == 0 ? '未猜中' : '+' + item.income + ' OC'}} </p>
+                    <p class="income" @click.stop="tapWin(index)" :class="[item.income == 0 ? lose : win]" v-if="item.payed == 1">{{item.income == 0 ? '未猜中' : '+' + item.income + ' OC'}} </p>
                 </div>
                 <div class="content">
                     <div class="team home">
@@ -144,7 +144,9 @@ export default {
 
         }, 1500, { 'trailing': false }),
 
-        tapWin: throttle(index => {
+        tapWin: throttle(function(index) {
+
+            console.log(this.records[index])
             if (this.records[index].payed != 1) return 
 
             this.$wechat.miniProgram.navigateTo({
@@ -276,6 +278,7 @@ export default {
 }
 
 .match {
+    width: 50%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
