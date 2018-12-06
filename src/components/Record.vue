@@ -178,13 +178,13 @@ export default {
                     this.records = data.matches
 
                     this.$nextTick(() => {
+                        this.$refs.scroller.donePulldown()
                         this.$refs.scroller.reset({top: 0}, 500)
                     })
 
                     this.nobet = (data.matches.length == 0) ? true : false
 
                     if(this.total > this.pageSize) {
-                        this.$refs.scroller.donePulldown()
                         this.$refs.scroller.enablePullup()
                     }
 

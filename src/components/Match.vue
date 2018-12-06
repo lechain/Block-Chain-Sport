@@ -1,5 +1,5 @@
 <template>
-        <scroller 
+    <scroller 
         use-pulldown :pulldown-config="pulldownDefaultConfig" ref="scroller" @on-pulldown-loading="refresh" lock-x enableHorizontalSwiping height="-44">
         <div class="match-csl">
             <div class="csl-item" v-for="(item, index) in list" :key=item.match_id>
@@ -18,10 +18,10 @@
                     </div>
                     <div class="vs"> 
                         <p class="round" v-if="item.round">第{{item.round}}轮</p>
+                        <p class="finish" v-if="Math.ceil(new Date().getTime() / 1000) + 600 >= item.match_time">{{info.BET_FINISHED}}</p>
                         <p v-if="item.match_state == 0">VS</p> 
                         <p v-else>{{item.home_score}} : {{item.guest_score}}</p>
-                        <p class="finish" v-if="Math.ceil(new Date().getTime() / 1000) + 600 >= item.match_time">{{info.BET_FINISHED}}</p>
-                        <p class="time" v-else>{{item.match_time|dateFormat}}</p>
+                        <p class="time" >{{item.match_time|dateFormat}}</p>
                     </div>
                     <div class="team">
                         <img :src="item.guest_club_logo" class="logo" />
