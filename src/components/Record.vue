@@ -147,7 +147,7 @@ export default {
         tapWin: throttle(function(index) {
 
             console.log(this.records[index])
-            if (this.records[index].payed != 1) return 
+            if (this.records[index].income == 0) return 
 
             this.$wechat.miniProgram.navigateTo({
                 url: '/pages/detail/detail?tokenid=1&source=sports&transid=' + this.records[index].pb_trans_id

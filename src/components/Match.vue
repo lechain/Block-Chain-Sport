@@ -259,7 +259,8 @@ export default {
 
         pay: throttle(function(num, itemIndex, tabIndex) {
             let team = this.list[itemIndex]
-            let desc = info.SPORTS_NAME[this.type]  + DateFormat(new Date(team.match_time * 1000), 'YYYY') + "赛季第" + team.round + "轮 "  + "\n"
+            let desc = info.SPORTS_NAME[this.type]  + DateFormat(new Date(team.match_time * 1000), 'YYYY') + "赛季" 
+                + (team.round ? "第" + team.round + "轮 " : "")  + "\n"
             switch (tabIndex) {
                 case 0:
                     desc += team.home_club_name + ', 胜!\n投注 ' + num + ' OC'
