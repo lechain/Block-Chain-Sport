@@ -10,7 +10,7 @@
                         <p class="matchType">{{item.match_type | matchType}}</p>
                         <p class="matchState" :class="[item.payed == 0 ? playing : played]">| {{item.payed | matchState}}</p>
                     </div>
-                    <p class="income" @click.stop="tapWin(index)" :class="[item.income == 0 ? lose : win]" v-if="item.payed == 1">{{item.income == 0 ? '未猜中' : '+' + item.income + ' OC'}} </p>
+                    <p class="income"  :class="[item.income == 0 ? lose : win]" v-if="item.payed == 1">{{item.income == 0 ? '未猜中' : '+' + item.income + ' OC'}} </p>
                 </div>
                 <div class="content">
                     <div class="team home">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="footer">
-                    <p>{{item.bet | betTeam(item)}} {{item.stake}} OC <span :class="[item.trans_state == 0 ? notplay : (item.trans_state == 1 ? playing : played)]">{{info.TRANS_STATE[item.trans_state]}}</span></p>
+                    <p @click.stop="tapBet(index)">{{item.bet | betTeam(item)}} {{item.stake}} OC <span :class="[item.trans_state == 0 ? notplay : (item.trans_state == 1 ? playing : played)]">{{info.TRANS_STATE[item.trans_state]}}</span></p>
                     <p>{{item.bet_time | dateFormat}} 参与的竞猜</p>
                 </div>
             </div>
@@ -135,24 +135,19 @@ export default {
 
 
         tapItem: throttle(function(index) {
-            console.log(this.records[index])
-            if (this.records[index].trans_state == 0) return
-
-            this.$wechat.miniProgram.navigateTo({
-                url: '/pages/detail/detail?tokenid=1&source=sports&transid=' + this.records[index].trans_id
-            })
-
-        }, 1500, { 'trailing': false }),
-
-        tapWin: throttle(function(index) {
-
-            console.log(this.records[index])
             if (this.records[index].income == 0) return 
 
             this.$wechat.miniProgram.navigateTo({
                 url: '/pages/detail/detail?tokenid=1&source=sports&transid=' + this.records[index].pb_trans_id
             })
+        }, 1500, { 'trailing': false }),
 
+        tapBet: throttle(function(index) {
+            if (this.records[index].trans_state == 0) return
+
+            this.$wechat.miniProgram.navigateTo({
+                url: '/pages/detail/detail?tokenid=1&source=sports&transid=' + this.records[index].trans_id
+            })
         }, 1500, { 'trailing': false }),
 
         refresh: function() {
