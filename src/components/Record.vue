@@ -273,19 +273,19 @@ export default {
 }
 
 .match {
-    width: 50%;
+    width: 50vw;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
 }
 
 .income {
-    width: 50%;
     display: flex;
     justify-content: flex-end;
 }
 
 .win {
+    width: 45vw;
     color: red;
     font-size: 1.8rem;
 }
