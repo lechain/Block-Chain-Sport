@@ -17,8 +17,8 @@
                         <p>{{item.home_club_name}}</p>
                     </div>
                     <div class="vs"> 
-                        <p class="round" v-if="item.round">第{{item.round}}轮</p>
                         <p class="finish" v-if="Math.ceil(new Date().getTime() / 1000) + 600 >= item.match_time">{{info.BET_FINISHED}}</p>
+                        <p class="round" v-if="item.round">第{{item.round}}轮</p>
                         <p v-if="item.match_state == 0">VS</p> 
                         <p v-else>{{item.home_score}} : {{item.guest_score}}</p>
                         <p class="time" >{{item.match_time|dateFormat}}</p>
@@ -68,11 +68,7 @@
             </div>
             <div v-transfer-dom>
                 <alert v-model="alertShow" title="竞猜规则" button-text="同意">
-                <p class="ruleContent">{{info.RULE[0]}}</p>
-                <p class="ruleContent">{{info.RULE[1]}}</p>
-                <p class="ruleContent">{{info.RULE[2]}}</p>
-                <p class="ruleContent">{{info.RULE[3]}}</p>
-                <p class="ruleContent">{{info.RULE[4]}}</p>
+                <p class="ruleContent" v-for="item in info.RULE">{{item}}</p>
                 </alert>
             </div>
         </div>
@@ -285,7 +281,7 @@ export default {
                     this.isShow = false
                 }, 500)
                 this.$wechat.miniProgram.navigateTo({
-                    url: '/pages/transfer/transfer?symbol=OC&tokenid=1&source=sports&addr=0xc748a16a533431ba8a3b7794cbac7a016f81fc6c&desc=' + desc + '&org_transid=' + res.data.org_trans_id + '&price=' + num
+                    url: '/pages/transfer/transfer?symbol=OC&tokenid=1&source=sports&addr=' + process.env.VUE_APP_ADDR + '&desc=' + desc + '&org_transid=' + res.data.org_trans_id + '&price=' + num
                 })
             }).catch(err => this.$toast(err.response ? info.ERR_INNER: info.ERR_NETWORK))
 
