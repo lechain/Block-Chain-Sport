@@ -68,7 +68,7 @@
             </div>
             <div v-transfer-dom>
                 <alert v-model="alertShow" title="竞猜规则" button-text="同意">
-                <p class="ruleContent" v-for="item in info.RULE">{{item}}</p>
+                    <p class="ruleContent" v-for="item in info.RULE" :key="item">{{item}}</p>
                 </alert>
             </div>
         </div>
@@ -181,7 +181,7 @@ export default {
 
             let n = (num / 10000).toString()
             return n.substr(n.indexOf('.') + 1, 1) == 0 ?
-                n.substr(0, n.indexOf('.')) + 'w' : n.substring(0, n.indexOf('.') + 2) + 'w'
+                n.substr(0, n.indexOf('.')) + 'w+' : n.substring(0, n.indexOf('.') + 2) + 'w+'
         }
     },
 
