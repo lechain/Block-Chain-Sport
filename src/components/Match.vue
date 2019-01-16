@@ -2,7 +2,7 @@
     <scroller 
         use-pulldown :pulldown-config="pulldownDefaultConfig" ref="scroller" @on-pulldown-loading="refresh" lock-x enableHorizontalSwiping height="-44">
         <div class="match-csl">
-            <div class="csl-item" v-for="(item, index) in list" :key=item.match_id>
+            <div class="csl-item" v-for="(item, index) in list" :key=item.match_id @click="tapItem(index, $event)">
                 <div class="csl-header">
                     <p style="width:45vw;">本场已投注 <span style="color: #c38b36">{{item.total_oc | ocFormat}}</span></p>
                     <div class="bet">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="csl-quiz">
                     <button-tab class="csl-btn">
-                        <button-tab-item @on-item-click="tapItem(index, $event)" v-for="tab in pressTabs" :key="tab.index">{{tab}}</button-tab-item>
+                        <button-tab-item @on-item-click="tapBtn(index, i)" v-for="(tab, i) in pressTabs" :key="tab.index">{{tab}}</button-tab-item>
                     </button-tab>
                 </div>
             </div>
@@ -220,7 +220,13 @@ export default {
             })
         },
 
-        tapItem: throttle(function(itemIndex, tabIndex) {
+        tapItem: throttle(function(index, e){
+            console.log(index, e)
+        }, 800, { 'trailing': false }),
+
+        tapBtn: throttle(function(itemIndex, tabIndex) {
+            console.log(itemIndex, tabIndex)
+
             if(Math.ceil(new Date().getTime() / 1000) + this.deadline >= this.list[itemIndex].match_time) {
                 this.$toast(info.BET_FINISHED)
                 return

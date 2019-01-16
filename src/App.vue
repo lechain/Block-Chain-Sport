@@ -18,7 +18,7 @@
             </swiper-slide>
             <swiper-slide>
                 <div class=slideHeader></div>
-                <match :isActive="index == 3" type="cba" :pressNum="2"></match>
+                <match :isActive="index == 3" type="afc"></match>
             </swiper-slide>
 
         </swiper>
