@@ -8,13 +8,19 @@
                 <div class=slideHeader></div>
                 <record :isActive="index == 0"></record>
             </swiper-slide>
+
             <swiper-slide>
                 <div class=slideHeader></div>
-                <match :isActive="index == 1" type="epl"></match>
+                <match :isActive="index == 1" type="laliga"></match>
+            </swiper-slide>
+
+            <swiper-slide>
+                <div class=slideHeader></div>
+                <match :isActive="index == 2" type="epl"></match>
             </swiper-slide>
             <swiper-slide>
                 <div class=slideHeader></div>
-                <match :isActive="index == 2" type="nba" :pressNum="2"></match>
+                <match :isActive="index == 3" type="nba" :pressNum="2"></match>
             </swiper-slide>
         </swiper>
     </div>

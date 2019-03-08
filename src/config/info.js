@@ -3,7 +3,7 @@ export default {
     // tab items
     TITLE: "赛事",
 
-    TAB_ITEMS: ["战绩","英超","NBA"],
+    TAB_ITEMS: ["战绩","西甲","英超","NBA"],
 
     SPORTS_NAME: {
         csl: "中超",
